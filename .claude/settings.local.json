@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx prisma db push:*)",
+      "Bash(bunx prisma db push:*)",
+      "Bash(dir /s \"c:\\\\FUNDamental Grow\\\\fundamental-grow\\\\app\")",
+      "Bash(bunx prisma generate:*)",
+      "Bash(tree:*)",
+      "Bash(bunx prisma db seed:*)",
+      "Bash(tasklist /FI \"IMAGENAME eq node.exe\")",
+      "Bash(findstr:*)",
+      "Bash(taskkill:*)",
+      "Bash(exit 0)"
+    ]
+  }
+}
