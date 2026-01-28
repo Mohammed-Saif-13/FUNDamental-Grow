@@ -10,7 +10,8 @@ async function getRequests() {
     return requests;
 }
 
-export const revalidate = 60;
+// Fixed: Use dynamic rendering instead of revalidate for Admin pages to prevent build errors
+export const dynamic = "force-dynamic";
 
 export default async function Page() {
     const requests = await getRequests();
