@@ -13,7 +13,7 @@ async function main() {
       name: "Admin",
       email: "admin@fundamentalgrow.com",
       password: adminPassword,
-      role: "ADMIN", // FIXED: uppercase
+      role: "ADMIN",
     },
   });
   console.log("✅ Admin created:", admin.email);
@@ -40,7 +40,7 @@ async function main() {
     const user = await prisma.user.upsert({
       where: { email: u.email },
       update: {},
-      create: { ...u, password: userPassword, role: "USER" }, // FIXED: uppercase
+      create: { ...u, password: userPassword, role: "USER" },
     });
     users.push(user);
   }
@@ -152,13 +152,15 @@ async function main() {
       isPublic: true,
       endDate: new Date(Date.now() + 20 * 24 * 60 * 60 * 1000),
     },
-    // 45 Additional Campaigns with varied categories
     {
       title: "Women's Skill Training Program",
       slug: "womens-skill-training-program",
-      description: "Empower women through vocational training and job placement.",
-      story: "Training women for sustainable livelihoods in textile, handicrafts, and services.",
-      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
+      description:
+        "Empower women through vocational training and job placement.",
+      story:
+        "Training women for sustainable livelihoods in textile, handicrafts, and services.",
+      image:
+        "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
       goalAmount: 600000 * 100,
       raisedAmount: 350000 * 100,
       category: "Skill Development",
@@ -175,8 +177,10 @@ async function main() {
       title: "Child Nutrition Program",
       slug: "child-nutrition-program",
       description: "Combat malnutrition in children through nutrition centers.",
-      story: "Providing nutritious meals and health checkups to malnourished children.",
-      image: "https://images.unsplash.com/photo-1494309513473-e97345c2a14a?w=800&q=80",
+      story:
+        "Providing nutritious meals and health checkups to malnourished children.",
+      image:
+        "https://images.unsplash.com/photo-1494309513473-e97345c2a14a?w=800&q=80",
       goalAmount: 700000 * 100,
       raisedAmount: 420000 * 100,
       category: "Health",
@@ -192,9 +196,12 @@ async function main() {
     {
       title: "Clean Water Project",
       slug: "clean-water-project",
-      description: "Install water purification systems in villages lacking clean water.",
-      story: "Providing safe drinking water to 50 villages in drought-affected areas.",
-      image: "https://images.unsplash.com/photo-1559628233-efc59c8f3f3d?w=800&q=80",
+      description:
+        "Install water purification systems in villages lacking clean water.",
+      story:
+        "Providing safe drinking water to 50 villages in drought-affected areas.",
+      image:
+        "https://images.unsplash.com/photo-1559628233-efc59c8f3f3d?w=800&q=80",
       goalAmount: 900000 * 100,
       raisedAmount: 550000 * 100,
       category: "Environment",
@@ -210,9 +217,11 @@ async function main() {
     {
       title: "Solar Energy for Villages",
       slug: "solar-energy-villages",
-      description: "Install solar panels in villages to provide clean energy access.",
+      description:
+        "Install solar panels in villages to provide clean energy access.",
       story: "Bringing renewable energy and electricity to off-grid villages.",
-      image: "https://images.unsplash.com/photo-1509391366360-2e938f4f4c6c?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1509391366360-2e938f4f4c6c?w=800&q=80",
       goalAmount: 1200000 * 100,
       raisedAmount: 700000 * 100,
       category: "Environment",
@@ -229,8 +238,10 @@ async function main() {
       title: "Elderly Care Center",
       slug: "elderly-care-center",
       description: "Build a comprehensive care center for senior citizens.",
-      story: "Providing shelter, healthcare, and dignified living for abandoned elderly.",
-      image: "https://images.unsplash.com/photo-1576091160550-112173f7f869?w=800&q=80",
+      story:
+        "Providing shelter, healthcare, and dignified living for abandoned elderly.",
+      image:
+        "https://images.unsplash.com/photo-1576091160550-112173f7f869?w=800&q=80",
       goalAmount: 800000 * 100,
       raisedAmount: 480000 * 100,
       category: "Senior Care",
@@ -247,8 +258,10 @@ async function main() {
       title: "Autism Center",
       slug: "autism-center",
       description: "Support center for children with autism spectrum disorder.",
-      story: "Therapy, education, and vocational training for autistic children.",
-      image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80",
+      story:
+        "Therapy, education, and vocational training for autistic children.",
+      image:
+        "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&q=80",
       goalAmount: 600000 * 100,
       raisedAmount: 360000 * 100,
       category: "Special Care",
@@ -266,7 +279,8 @@ async function main() {
       slug: "street-dogs-shelter",
       description: "Build a sanctuary for stray and abandoned dogs.",
       story: "Medical care, food, and adoption services for street dogs.",
-      image: "https://images.unsplash.com/photo-1552053831-71594a27c62d?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1552053831-71594a27c62d?w=800&q=80",
       goalAmount: 500000 * 100,
       raisedAmount: 300000 * 100,
       category: "Animal Welfare",
@@ -284,7 +298,8 @@ async function main() {
       slug: "disaster-relief-fund",
       description: "Emergency relief for people affected by natural disasters.",
       story: "Quick response teams providing food, water, and medical aid.",
-      image: "https://images.unsplash.com/photo-1548592328-c9fa89d128fa?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1548592328-c9fa89d128fa?w=800&q=80",
       goalAmount: 1000000 * 100,
       raisedAmount: 650000 * 100,
       category: "Humanitarian",
@@ -300,9 +315,12 @@ async function main() {
     {
       title: "Mental Health Awareness",
       slug: "mental-health-awareness",
-      description: "Campaign to promote mental health awareness and counseling.",
-      story: "Free counseling and mental health workshops in schools and communities.",
-      image: "https://images.unsplash.com/photo-1577720643272-265f434b0b11?w=800&q=80",
+      description:
+        "Campaign to promote mental health awareness and counseling.",
+      story:
+        "Free counseling and mental health workshops in schools and communities.",
+      image:
+        "https://images.unsplash.com/photo-1577720643272-265f434b0b11?w=800&q=80",
       goalAmount: 400000 * 100,
       raisedAmount: 240000 * 100,
       category: "Health",
@@ -320,7 +338,8 @@ async function main() {
       slug: "school-building-project",
       description: "Construct a new school in a remote village.",
       story: "Building infrastructure for 300 students in an underserved area.",
-      image: "https://images.unsplash.com/photo-1427504494785-cdaf1ef60515?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1427504494785-cdaf1ef60515?w=800&q=80",
       goalAmount: 1500000 * 100,
       raisedAmount: 900000 * 100,
       category: "Education",
@@ -337,8 +356,10 @@ async function main() {
       title: "Community Garden Initiative",
       slug: "community-garden-initiative",
       description: "Create sustainable community gardens for urban farming.",
-      story: "Promoting organic farming and sustainable food production in cities.",
-      image: "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=800&q=80",
+      story:
+        "Promoting organic farming and sustainable food production in cities.",
+      image:
+        "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=800&q=80",
       goalAmount: 300000 * 100,
       raisedAmount: 180000 * 100,
       category: "Environment",
@@ -355,8 +376,10 @@ async function main() {
       title: "Leprosy Rehabilitation Center",
       slug: "leprosy-rehabilitation-center",
       description: "Support and rehabilitation for leprosy patients.",
-      story: "Medical treatment and social rehabilitation for affected individuals.",
-      image: "https://images.unsplash.com/photo-1581092916550-e323be2ae537?w=800&q=80",
+      story:
+        "Medical treatment and social rehabilitation for affected individuals.",
+      image:
+        "https://images.unsplash.com/photo-1581092916550-e323be2ae537?w=800&q=80",
       goalAmount: 700000 * 100,
       raisedAmount: 420000 * 100,
       category: "Medical",
@@ -372,9 +395,11 @@ async function main() {
     {
       title: "Orphanage Support Program",
       slug: "orphanage-support-program",
-      description: "Provide education, healthcare, and nutrition for orphaned children.",
+      description:
+        "Provide education, healthcare, and nutrition for orphaned children.",
       story: "Supporting 5 orphanages with 300+ children in different states.",
-      image: "https://images.unsplash.com/photo-1469571486292-0ba58fe46b35?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1469571486292-0ba58fe46b35?w=800&q=80",
       goalAmount: 900000 * 100,
       raisedAmount: 540000 * 100,
       category: "Child Welfare",
@@ -390,9 +415,11 @@ async function main() {
     {
       title: "Sports Academy for Underprivileged",
       slug: "sports-academy-underprivileged",
-      description: "Sports training and facilities for talented but poor children.",
+      description:
+        "Sports training and facilities for talented but poor children.",
       story: "Identify and nurture athletic talent from rural backgrounds.",
-      image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800&q=80",
       goalAmount: 550000 * 100,
       raisedAmount: 330000 * 100,
       category: "Sports",
@@ -408,9 +435,11 @@ async function main() {
     {
       title: "Library Development",
       slug: "library-development",
-      description: "Establish libraries in villages to promote reading culture.",
+      description:
+        "Establish libraries in villages to promote reading culture.",
       story: "Creating 20 community libraries with diverse book collections.",
-      image: "https://images.unsplash.com/photo-150784272343-583f20270319?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-150784272343-583f20270319?w=800&q=80",
       goalAmount: 400000 * 100,
       raisedAmount: 240000 * 100,
       category: "Education",
@@ -428,7 +457,8 @@ async function main() {
       slug: "skill-training-disabled",
       description: "Vocational training for persons with disabilities.",
       story: "Empowering 500 disabled individuals with marketable skills.",
-      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
       goalAmount: 600000 * 100,
       raisedAmount: 360000 * 100,
       category: "Skill Development",
@@ -444,9 +474,12 @@ async function main() {
     {
       title: "Wildlife Conservation",
       slug: "wildlife-conservation",
-      description: "Protect endangered wildlife species in their natural habitats.",
-      story: "Conservation efforts for tigers, elephants, and other endangered species.",
-      image: "https://images.unsplash.com/photo-1446716878081-d282a0f896e2?w=800&q=80",
+      description:
+        "Protect endangered wildlife species in their natural habitats.",
+      story:
+        "Conservation efforts for tigers, elephants, and other endangered species.",
+      image:
+        "https://images.unsplash.com/photo-1446716878081-d282a0f896e2?w=800&q=80",
       goalAmount: 1000000 * 100,
       raisedAmount: 600000 * 100,
       category: "Environment",
@@ -464,7 +497,8 @@ async function main() {
       slug: "maternal-health-program",
       description: "Improve maternal and child health outcomes in rural areas.",
       story: "Free prenatal care and safe delivery services for poor women.",
-      image: "https://images.unsplash.com/photo-1576091160596-112173f7f869?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1576091160596-112173f7f869?w=800&q=80",
       goalAmount: 800000 * 100,
       raisedAmount: 480000 * 100,
       category: "Health",
@@ -481,8 +515,10 @@ async function main() {
       title: "Anti-Trafficking Campaign",
       slug: "anti-trafficking-campaign",
       description: "Combat human trafficking and support survivors.",
-      story: "Rehabilitation and vocational training for trafficking survivors.",
-      image: "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=800&q=80",
+      story:
+        "Rehabilitation and vocational training for trafficking survivors.",
+      image:
+        "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=800&q=80",
       goalAmount: 700000 * 100,
       raisedAmount: 420000 * 100,
       category: "Humanitarian",
@@ -500,7 +536,8 @@ async function main() {
       slug: "flood-relief-initiative",
       description: "Emergency aid for flood-affected communities.",
       story: "Providing immediate relief and rehabilitation services.",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80",
       goalAmount: 900000 * 100,
       raisedAmount: 540000 * 100,
       category: "Humanitarian",
@@ -516,9 +553,11 @@ async function main() {
     {
       title: "Arts & Culture Preservation",
       slug: "arts-culture-preservation",
-      description: "Preserve traditional arts and crafts of indigenous communities.",
+      description:
+        "Preserve traditional arts and crafts of indigenous communities.",
       story: "Supporting artisans and promoting cultural heritage.",
-      image: "https://images.unsplash.com/photo-1579783902614-e3fb5141b0cb?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1579783902614-e3fb5141b0cb?w=800&q=80",
       goalAmount: 500000 * 100,
       raisedAmount: 300000 * 100,
       category: "Culture",
@@ -536,7 +575,8 @@ async function main() {
       slug: "rural-veterinary-clinic",
       description: "Free veterinary services for livestock in rural areas.",
       story: "Healthcare for cattle, buffalo, and other farm animals.",
-      image: "https://images.unsplash.com/photo-1576091160399-112c9e29546f?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1576091160399-112c9e29546f?w=800&q=80",
       goalAmount: 400000 * 100,
       raisedAmount: 240000 * 100,
       category: "Animal Welfare",
@@ -552,9 +592,11 @@ async function main() {
     {
       title: "Student Scholarship Fund",
       slug: "student-scholarship-fund",
-      description: "Scholarships for meritorious but economically weak students.",
+      description:
+        "Scholarships for meritorious but economically weak students.",
       story: "Supporting 100 students pursuing higher education.",
-      image: "https://images.unsplash.com/photo-1427504494785-cdaf1ef60515?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1427504494785-cdaf1ef60515?w=800&q=80",
       goalAmount: 1000000 * 100,
       raisedAmount: 600000 * 100,
       category: "Education",
@@ -572,7 +614,8 @@ async function main() {
       slug: "tuberculosis-control-program",
       description: "Free screening and treatment for tuberculosis patients.",
       story: "Comprehensive TB control and prevention in high-risk areas.",
-      image: "https://images.unsplash.com/photo-1576091160550-112173f7f869?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?w=800&q=80",
       goalAmount: 600000 * 100,
       raisedAmount: 360000 * 100,
       category: "Medical",
@@ -590,7 +633,8 @@ async function main() {
       slug: "waste-management-project",
       description: "Implement waste segregation and recycling in communities.",
       story: "Creating 50 waste management centers with training programs.",
-      image: "https://images.unsplash.com/photo-1559734876-a5c2e6aa8373?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1559734876-a5c2e6aa8373?w=800&q=80",
       goalAmount: 700000 * 100,
       raisedAmount: 420000 * 100,
       category: "Environment",
@@ -608,7 +652,8 @@ async function main() {
       slug: "dental-care-camp",
       description: "Free dental checkup and treatment for poor children.",
       story: "Mobile dental clinics visiting 30 villages per month.",
-      image: "https://images.unsplash.com/photo-1576091160550-112173f7f869?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80",
       goalAmount: 300000 * 100,
       raisedAmount: 180000 * 100,
       category: "Health",
@@ -624,9 +669,11 @@ async function main() {
     {
       title: "Women's Microfinance Program",
       slug: "womens-microfinance-program",
-      description: "Microloans for women entrepreneurs to start small businesses.",
+      description:
+        "Microloans for women entrepreneurs to start small businesses.",
       story: "Empowering 200 women to become self-employed.",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a0?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a0?w=800&q=80",
       goalAmount: 800000 * 100,
       raisedAmount: 480000 * 100,
       category: "Economic Empowerment",
@@ -643,8 +690,10 @@ async function main() {
       title: "Street School Initiative",
       slug: "street-school-initiative",
       description: "Education for children of street dwellers and homeless.",
-      story: "Informal schools providing basic education to marginalized children.",
-      image: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&q=80",
+      story:
+        "Informal schools providing basic education to marginalized children.",
+      image:
+        "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&q=80",
       goalAmount: 500000 * 100,
       raisedAmount: 300000 * 100,
       category: "Education",
@@ -662,7 +711,8 @@ async function main() {
       slug: "hearing-impaired-support",
       description: "Hearing aids and speech therapy for deaf children.",
       story: "Providing assistive devices and rehabilitation services.",
-      image: "https://images.unsplash.com/photo-1576091160550-112173f7f869?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1516585427167-9f4af9627e6c?w=800&q=80",
       goalAmount: 600000 * 100,
       raisedAmount: 360000 * 100,
       category: "Special Care",
@@ -680,7 +730,8 @@ async function main() {
       slug: "renewable-energy-training",
       description: "Vocational training in renewable energy technologies.",
       story: "Training 300 youth in solar installation and maintenance.",
-      image: "https://images.unsplash.com/photo-1509391366360-2e938f4f4c6c?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1509391366360-2e938f4f4c6c?w=800&q=80",
       goalAmount: 700000 * 100,
       raisedAmount: 420000 * 100,
       category: "Skill Development",
@@ -698,7 +749,8 @@ async function main() {
       slug: "migrant-worker-support",
       description: "Support services for migrant workers and their families.",
       story: "Legal aid, healthcare, and financial literacy programs.",
-      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1536849460588-696219a9e98d?w=800&q=80",
       goalAmount: 600000 * 100,
       raisedAmount: 360000 * 100,
       category: "Labor Welfare",
@@ -716,7 +768,8 @@ async function main() {
       slug: "eye-care-initiative",
       description: "Free eye checkups and spectacles for poor people.",
       story: "Mobile eye clinics and cataract surgery camps.",
-      image: "https://images.unsplash.com/photo-1576091160550-112173f7f869?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1576091160550-112173f7f869?w=800&q=80",
       goalAmount: 500000 * 100,
       raisedAmount: 300000 * 100,
       category: "Health",
@@ -734,7 +787,8 @@ async function main() {
       slug: "agricultural-training-centers",
       description: "Training farmers in modern and sustainable agriculture.",
       story: "Helping 500 farmers increase crop yield and income.",
-      image: "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=800&q=80",
       goalAmount: 700000 * 100,
       raisedAmount: 420000 * 100,
       category: "Agriculture",
@@ -750,9 +804,11 @@ async function main() {
     {
       title: "Transgender Support Program",
       slug: "transgender-support-program",
-      description: "Health, education, and livelihood support for transgender individuals.",
+      description:
+        "Health, education, and livelihood support for transgender individuals.",
       story: "Comprehensive support and social reintegration services.",
-      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
       goalAmount: 500000 * 100,
       raisedAmount: 300000 * 100,
       category: "Social Welfare",
@@ -770,7 +826,8 @@ async function main() {
       slug: "digital-literacy-seniors",
       description: "Teaching basic computer and internet skills to elderly.",
       story: "Helping 1000 seniors connect with family online safely.",
-      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80",
       goalAmount: 400000 * 100,
       raisedAmount: 240000 * 100,
       category: "Education",
@@ -786,9 +843,11 @@ async function main() {
     {
       title: "Foodbank Network",
       slug: "foodbank-network",
-      description: "Collect and distribute surplus food to prevent waste and hunger.",
+      description:
+        "Collect and distribute surplus food to prevent waste and hunger.",
       story: "Feeding 10000 people daily through food banks.",
-      image: "https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=800&q=80",
       goalAmount: 600000 * 100,
       raisedAmount: 360000 * 100,
       category: "Hunger Relief",
@@ -806,7 +865,8 @@ async function main() {
       slug: "depression-support-group",
       description: "Peer support and counseling for people with depression.",
       story: "Creating 30 support groups across major cities.",
-      image: "https://images.unsplash.com/photo-1577720643272-265f434b0b11?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1577720643272-265f434b0b11?w=800&q=80",
       goalAmount: 400000 * 100,
       raisedAmount: 240000 * 100,
       category: "Mental Health",
@@ -824,7 +884,8 @@ async function main() {
       slug: "sanitation-improvement",
       description: "Build toilets and improve sanitation in villages.",
       story: "Constructing 500 public toilets in rural areas.",
-      image: "https://images.unsplash.com/photo-1559027615-cd2628902d4a?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1584820927498-cfe5211fd63d?w=800&q=80",
       goalAmount: 800000 * 100,
       raisedAmount: 480000 * 100,
       category: "Sanitation",
@@ -840,9 +901,11 @@ async function main() {
     {
       title: "Coaching for STEM Subjects",
       slug: "coaching-stem-subjects",
-      description: "Free coaching for Science, Technology, Engineering, Mathematics.",
+      description:
+        "Free coaching for Science, Technology, Engineering, Mathematics.",
       story: "Helping 500 students excel in STEM subjects.",
-      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&q=80",
       goalAmount: 550000 * 100,
       raisedAmount: 330000 * 100,
       category: "Education",
@@ -860,7 +923,8 @@ async function main() {
       slug: "cancer-screening-drive",
       description: "Early detection camps for various types of cancer.",
       story: "Free screening for breast, cervical, and oral cancer.",
-      image: "https://images.unsplash.com/photo-1576091160550-112173f7f869?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800&q=80",
       goalAmount: 700000 * 100,
       raisedAmount: 420000 * 100,
       category: "Medical",
@@ -878,7 +942,8 @@ async function main() {
       slug: "slum-upgrade-project",
       description: "Infrastructure development in slum areas.",
       story: "Improving roads, drainage, and basic amenities.",
-      image: "https://images.unsplash.com/photo-1517457373614-b7152f800fd1?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1517457373614-b7152f800fd1?w=800&q=80",
       goalAmount: 1000000 * 100,
       raisedAmount: 600000 * 100,
       category: "Infrastructure",
@@ -896,7 +961,8 @@ async function main() {
       slug: "malaria-prevention-drive",
       description: "Mosquito control and malaria awareness campaign.",
       story: "Distribution of mosquito nets and awareness workshops.",
-      image: "https://images.unsplash.com/photo-1576091160550-112173f7f869?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=800&q=80",
       goalAmount: 400000 * 100,
       raisedAmount: 240000 * 100,
       category: "Health",
@@ -914,7 +980,8 @@ async function main() {
       slug: "baking-pastry-training",
       description: "Vocational training in baking and pastry making.",
       story: "Empowering 100 women with bakery skills.",
-      image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80",
       goalAmount: 300000 * 100,
       raisedAmount: 180000 * 100,
       category: "Skill Development",
@@ -932,7 +999,8 @@ async function main() {
       slug: "fishermen-support-initiative",
       description: "Improve livelihoods of fishing communities.",
       story: "Providing nets, training, and market access.",
-      image: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1520626353608-84224e7a85d2?w=800&q=80",
       goalAmount: 600000 * 100,
       raisedAmount: 360000 * 100,
       category: "Economic Empowerment",
@@ -950,7 +1018,8 @@ async function main() {
       slug: "yoga-wellness",
       description: "Yoga classes and wellness programs for communities.",
       story: "Promoting physical and mental health through yoga.",
-      image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800&q=80",
+      image:
+        "https://images.unsplash.com/photo-1544367563-12123d8965cd?w=800&q=80",
       goalAmount: 300000 * 100,
       raisedAmount: 180000 * 100,
       category: "Health",

@@ -2,7 +2,6 @@ import NextAuth from "next-auth";
 import { authConfig } from "@/auth.config";
 import { NextResponse } from "next/server";
 
-// Use lightweight config to avoid 1MB limit
 const { auth } = NextAuth(authConfig);
 
 export default auth(async (req) => {
@@ -11,8 +10,11 @@ export default auth(async (req) => {
   const isLoggedIn = !!req.auth;
   const userRole = req.auth?.user?.role;
 
-  // Allow OAuth callbacks
-  if (pathname.startsWith("/api/auth")) {
+  // Debug log (remove in production)
+  // console.log("Middleware:", { pathname, isLoggedIn, userRole });
+
+  // Allow all API routes
+  if (pathname.startsWith("/api")) {
     return NextResponse.next();
   }
 
@@ -21,6 +23,7 @@ export default auth(async (req) => {
   const isAuthRoute =
     pathname.startsWith("/login") || pathname.startsWith("/signup");
 
+  // Auth routes - redirect logged in users
   if (isAuthRoute) {
     if (isLoggedIn) {
       if (userRole === "ADMIN") {
@@ -34,6 +37,7 @@ export default auth(async (req) => {
     return NextResponse.next();
   }
 
+  // Admin routes - require ADMIN role
   if (isAdminRoute) {
     if (!isLoggedIn) {
       return NextResponse.redirect(new URL("/login", nextUrl));
@@ -44,6 +48,7 @@ export default auth(async (req) => {
     return NextResponse.next();
   }
 
+  // Portal routes - require VOLUNTEER or ADMIN role
   if (isPortalRoute) {
     if (!isLoggedIn) {
       return NextResponse.redirect(new URL("/login", nextUrl));
@@ -58,5 +63,7 @@ export default auth(async (req) => {
 });
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: [
+    "/((?!_next/static|_next/image|favicon.ico|.*\\.png$|.*\\.jpg$|.*\\.svg$).*)",
+  ],
 };
