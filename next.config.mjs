@@ -11,13 +11,8 @@ const nextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
 
-  // Suppress Turbopack vs Webpack conflict in Next.js 16
-  experimental: {
-    turbopack: {},
-  },
-
+  // Webpack config to handle external modules
   webpack: (config) => {
-    // Externalize node-specific modules to prevent build errors
     config.externals.push({
       "utf-8-validate": "commonjs utf-8-validate",
       bufferutil: "commonjs bufferutil",
