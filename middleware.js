@@ -1,26 +1,26 @@
-import { auth } from "@/lib/auth";
+import NextAuth from "next-auth";
+import { authConfig } from "@/auth.config";
 import { NextResponse } from "next/server";
 
-export async function middleware(req) {
-  const { pathname } = req.nextUrl;
+// Use lightweight config to avoid 1MB limit
+const { auth } = NextAuth(authConfig);
 
-  // ✅ CRITICAL FIX: Allow all NextAuth API routes (OAuth callbacks)
-  // This MUST be checked BEFORE calling auth() to prevent blocking OAuth flow
+export default auth(async (req) => {
+  const { nextUrl } = req;
+  const { pathname } = nextUrl;
+  const isLoggedIn = !!req.auth;
+  const userRole = req.auth?.user?.role;
+
+  // Allow OAuth callbacks
   if (pathname.startsWith("/api/auth")) {
     return NextResponse.next();
   }
-
-  const session = await auth();
-  const { nextUrl } = req;
-  const isLoggedIn = !!session;
-  const userRole = session?.user?.role;
 
   const isAdminRoute = pathname.startsWith("/admin");
   const isPortalRoute = pathname.startsWith("/portal");
   const isAuthRoute =
     pathname.startsWith("/login") || pathname.startsWith("/signup");
 
-  // Redirect logged-in users away from auth pages based on role
   if (isAuthRoute) {
     if (isLoggedIn) {
       if (userRole === "ADMIN") {
@@ -34,7 +34,6 @@ export async function middleware(req) {
     return NextResponse.next();
   }
 
-  // Admin route protection
   if (isAdminRoute) {
     if (!isLoggedIn) {
       return NextResponse.redirect(new URL("/login", nextUrl));
@@ -45,7 +44,6 @@ export async function middleware(req) {
     return NextResponse.next();
   }
 
-  // Portal route protection (volunteer + admin access)
   if (isPortalRoute) {
     if (!isLoggedIn) {
       return NextResponse.redirect(new URL("/login", nextUrl));
@@ -57,7 +55,7 @@ export async function middleware(req) {
   }
 
   return NextResponse.next();
-}
+});
 
 export const config = {
   matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
