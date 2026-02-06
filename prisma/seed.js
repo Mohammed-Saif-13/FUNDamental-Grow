@@ -754,7 +754,7 @@ async function main() {
       goalAmount: 600000 * 100,
       raisedAmount: 360000 * 100,
       category: "Labor Welfare",
-      location: "Maharashtr",
+      location: "Maharashtra",
       organizerName: "Migrant Care Foundation",
       organizerEmail: "migrant@care.org",
       organizerPhone: "9876543243",

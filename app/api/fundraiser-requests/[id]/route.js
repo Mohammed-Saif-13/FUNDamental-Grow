@@ -79,8 +79,14 @@ export async function PUT(req, { params }) {
 
     // APPROVE: Create campaign
     if (data.status === "approved") {
-      if (!data.endDate || !data.story || !data.image || !data.location) {
-        return errorResponse("Required: End Date, Story, Image, Location", 400);
+      // Use values from original request if not provided
+      const endDate = data.endDate || request.endDate || new Date(Date.now() + 30 * 24 * 60 * 60 * 1000);
+      const story = data.story || request.story || request.description;
+      const image = data.image || request.image;
+      const location = data.location || request.location;
+
+      if (!image) {
+        return errorResponse("Campaign image is required", 400);
       }
 
       let user = await prisma.user.findUnique({
@@ -94,14 +100,14 @@ export async function PUT(req, { params }) {
           title: request.title,
           category: request.category,
           goalAmount: request.goalAmount,
-          endDate: data.endDate,
+          endDate: endDate,
           description: request.description,
-          story: data.story,
-          image: data.image,
+          story: story,
+          image: image,
           organizerName: request.name,
           organizerEmail: request.email,
           organizerPhone: request.phone || "",
-          location: data.location,
+          location: location || "India",
           featured: data.featured || false,
         },
         userId,
