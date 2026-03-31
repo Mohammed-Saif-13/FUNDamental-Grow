@@ -179,7 +179,7 @@ export default function CreateCampaignForm() {
                     description: formData.description.trim(),
                     story: formData.story.trim(),
                     category: formData.category,
-                    goalAmount: Math.round(parseFloat(formData.goalAmount) * 100), // Convert to paise
+                    goalAmount: parseFloat(formData.goalAmount),
                     endDate: formData.endDate,
                     location: formData.location.trim(),
                     organizerName: formData.organizerName.trim(),

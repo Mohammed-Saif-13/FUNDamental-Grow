@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -39,12 +39,10 @@ const menuItems = [
     { href: "/admin/settings", label: "Settings", icon: Settings },
 ];
 
-export default function Sidebar({ isOpen, onClose }) {
+export default function Sidebar({ isOpen, onClose, collapsed, setCollapsed }) {
     const pathname = usePathname();
-    const [collapsed, setCollapsed] = useState(false);
     const scrollRef = useRef(null);
 
-    // Prevent scroll propagation to parent
     useEffect(() => {
         const scrollElement = scrollRef.current;
         if (!scrollElement) return;
@@ -67,7 +65,6 @@ export default function Sidebar({ isOpen, onClose }) {
 
     return (
         <>
-            {/* Mobile overlay */}
             {isOpen && (
                 <div
                     className="fixed inset-0 bg-black/50 z-40 lg:hidden"
@@ -75,7 +72,6 @@ export default function Sidebar({ isOpen, onClose }) {
                 />
             )}
 
-            {/* Sidebar */}
             <aside
                 className={cn(
                     "fixed top-0 left-0 bg-slate-800 text-white z-50 transition-all duration-300",
@@ -89,11 +85,7 @@ export default function Sidebar({ isOpen, onClose }) {
                     overflow: "hidden"
                 }}
             >
-                {/* Logo - Fixed */}
-                <div
-                    className="flex items-center gap-3 p-4 border-b border-slate-700"
-                    style={{ flexShrink: 0 }}
-                >
+                <div className="flex items-center gap-3 p-4 border-b border-slate-700" style={{ flexShrink: 0 }}>
                     <div className="h-10 w-10 bg-orange-500 rounded-xl flex items-center justify-center flex-shrink-0">
                         <Heart className="h-6 w-6 text-white" />
                     </div>
@@ -108,7 +100,6 @@ export default function Sidebar({ isOpen, onClose }) {
                     </button>
                 </div>
 
-                {/* Menu - Scrollable with ref */}
                 <div
                     ref={scrollRef}
                     className="p-3 space-y-1 sidebar-menu-scroll"
@@ -143,12 +134,7 @@ export default function Sidebar({ isOpen, onClose }) {
                     })}
                 </div>
 
-                {/* Bottom section - Fixed */}
-                <div
-                    className="p-3 border-t border-slate-700 space-y-1"
-                    style={{ flexShrink: 0 }}
-                >
-                    {/* Collapse button */}
+                <div className="p-3 border-t border-slate-700 space-y-1" style={{ flexShrink: 0 }}>
                     <button
                         onClick={() => setCollapsed(!collapsed)}
                         className={cn(
@@ -160,7 +146,6 @@ export default function Sidebar({ isOpen, onClose }) {
                         {!collapsed && <span className="font-medium">Collapse Menu</span>}
                     </button>
 
-                    {/* Logout */}
                     <button
                         onClick={() => signOut({ callbackUrl: "/login" })}
                         className={cn(

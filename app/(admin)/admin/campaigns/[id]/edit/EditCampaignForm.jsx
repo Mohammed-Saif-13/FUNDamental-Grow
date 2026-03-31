@@ -133,25 +133,31 @@ export default function EditCampaignForm({ campaign }) {
         setError("");
 
         try {
+            const payload = {
+                title: formData.title.trim(),
+                description: formData.description.trim(),
+                story: formData.story.trim(),
+                category: formData.category,
+                endDate: formData.endDate,
+                location: formData.location.trim(),
+                organizerName: formData.organizerName.trim(),
+                organizerEmail: formData.organizerEmail.trim().toLowerCase(),
+                organizerPhone: formData.organizerPhone.replace(/\D/g, ""),
+                image: formData.image,
+                status: formData.status,
+                featured: formData.featured,
+                isPublic: formData.isPublic,
+            };
+
+            // 👉 ONLY if changed
+            if (formData.goalAmount !== campaign.goalAmount) {
+                payload.goalAmount = Math.round(parseFloat(formData.goalAmount) * 100);
+            }
+
             const res = await fetch(`/api/campaigns/${campaign.id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    title: formData.title.trim(),
-                    description: formData.description.trim(),
-                    story: formData.story.trim(),
-                    category: formData.category,
-                    goalAmount: Math.round(parseFloat(formData.goalAmount) * 100), // Convert to paise
-                    endDate: formData.endDate,
-                    location: formData.location.trim(),
-                    organizerName: formData.organizerName.trim(),
-                    organizerEmail: formData.organizerEmail.trim().toLowerCase(),
-                    organizerPhone: formData.organizerPhone.replace(/\D/g, ""),
-                    image: formData.image,
-                    status: formData.status,
-                    featured: formData.featured,
-                    isPublic: formData.isPublic,
-                }),
+                body: JSON.stringify(payload),
             });
 
             const data = await res.json();

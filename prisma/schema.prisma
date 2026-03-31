@@ -100,16 +100,6 @@ model Campaign {
   updates        CampaignUpdate[]
   donations      Donation[]
   volunteerTasks VolunteerTask[]
-
-  @@index([userId])
-  @@index([status])
-  @@index([category])
-  @@index([featured])
-  @@index([slug])
-  @@index([createdAt])
-  @@index([status, isPublic, featured])
-  @@index([category, status])
-  @@index([userId, status])
 }
 
 model CampaignUpdate {
@@ -130,27 +120,18 @@ model Donation {
   amount        Int
   donorName     String
   donorEmail    String
-  donorPhone    String?
-  message       String?  @db.Text
-  anonymous     Boolean  @default(false)
   paymentStatus String   @default("pending")
-  paymentId     String?  @unique
-  orderId       String?  @unique
-  signature     String?
   campaignId    String
   userId        String?
   createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
   
-  campaign Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
-  user     User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  campaign Campaign @relation(
+    fields: [campaignId],
+    references: [id],
+    onDelete: Cascade
+  )
 
-  @@index([campaignId])
-  @@index([userId])
-  @@index([paymentStatus])
-  @@index([donorEmail])
-  @@index([createdAt])
-  @@index([campaignId, paymentStatus])
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
 }
 
 model Volunteer {
