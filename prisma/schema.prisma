@@ -125,11 +125,7 @@ model Donation {
   userId        String?
   createdAt     DateTime @default(now())
   
-  campaign Campaign @relation(
-    fields: [campaignId],
-    references: [id],
-    onDelete: Cascade
-  )
+ campaign Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
 
   user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
 }
