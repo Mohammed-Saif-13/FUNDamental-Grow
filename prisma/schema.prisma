@@ -120,14 +120,17 @@ model Donation {
   amount        Int
   donorName     String
   donorEmail    String
+  donorPhone    String?          // ← yeh add karo
+  message       String?  @db.Text  // ← yeh bhi missing tha
+  anonymous     Boolean  @default(false)  // ← yeh bhi
+  orderId       String?          // ← yeh bhi
   paymentStatus String   @default("pending")
   campaignId    String
   userId        String?
   createdAt     DateTime @default(now())
   
- campaign Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
-
-  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+  campaign Campaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  user     User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
 }
 
 model Volunteer {
