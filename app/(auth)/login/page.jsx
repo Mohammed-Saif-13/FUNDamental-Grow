@@ -146,11 +146,11 @@ function LoginForm() {
                 </div>
 
                 {/* Forgot Password */}
-                <div className="text-right">
+                {/* <div className="text-right">
                     <Link href="/forgot-password" className="text-sm text-orange-500 hover:text-orange-600 font-medium">
                         Forgot password?
                     </Link>
-                </div>
+                </div> */}
 
                 {/* Submit Button */}
                 <button
